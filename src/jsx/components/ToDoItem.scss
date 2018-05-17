@@ -1,0 +1,26 @@
+.todo-item {
+  .todo-check {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid black;
+    position: relative;
+    color: black;
+  }
+  &:hover, &.checked {
+    text-decoration: line-through;
+    &::after {
+      content: '+';
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: inherit;
+    }
+  }
+  &.checked {
+    .todo-check {
+      border-color: green;
+    }
+  }
+}
