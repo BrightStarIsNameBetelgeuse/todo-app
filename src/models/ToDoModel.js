@@ -23,6 +23,8 @@ class ToDoModel {
     remove = id => {
         this.todos.find(el => el.id === id && this.todos.splice(id, 1));
     }
+    sortList = () => {
+    }
 }
 
 let model;

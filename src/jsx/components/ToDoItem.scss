@@ -1,4 +1,7 @@
 .todo-item {
+  display: flex;
+  align-items: center;
+  position: relative;
   .todo-check {
     display: inline-block;
     width: 10px;
@@ -8,19 +11,53 @@
     position: relative;
     color: black;
   }
-  &:hover, &.checked {
+  &.checked {
     text-decoration: line-through;
-    &::after {
-      content: '+';
-      position: absolute;
-      top: 0;
-      left: 0;
-      color: inherit;
+    input[type="checkbox"] ~ label {
+      border-color: green;
+      background-color: green;
     }
   }
-  &.checked {
-    .todo-check {
-      border-color: green;
+  input[type="checkbox"] {
+    opacity: 0;
+    & ~ label {
+      margin: 0;
+      margin-right: 0.5rem;
+      cursor: pointer;
+      border: 1px solid grey;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 50%;
+    }
+  }
+  .close {
+    display: none;
+    position: absolute;
+    right: 1rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    opacity: 0.3;
+    &::before, &::after {
+      position: absolute;
+      left: 15px;
+      content: ' ';
+      height: 1.2rem;
+      width: 2px;
+      background-color: #333;
+    }
+    &::before {
+      transform: translateX(-0.5rem) rotate(45deg);
+    }
+    &::after {
+      transform: translateX(-0.5rem) rotate(-45deg);
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+  &:hover {
+    .close {
+      display: block;
     }
   }
 }

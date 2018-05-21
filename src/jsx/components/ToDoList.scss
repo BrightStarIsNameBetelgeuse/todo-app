@@ -1,0 +1,17 @@
+.todo-group {
+  .todo-group__enter,
+  .todo-group__list {
+    display: inline-block;
+  }
+  .todo-group__enter {
+    margin-right: 1.5rem;
+  }
+}
+
+.todo-list {
+  padding: 0;
+  margin-top: 1rem;
+  li {
+    padding: 1rem 0;
+  }
+}
