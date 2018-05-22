@@ -6,10 +6,8 @@
    "scripts": {
       "build": "cross-env NODE_ENV=production webpack -p --progress --profile --colors",
       "build:dev": "cross-env NODE_ENV=development webpack -d --progress --profile --colors",
-      "build:test": "cross-env NODE_ENV=production webpack -p --progress --profile --colors && npm run test",
       "start": "webpack-dev-server --progress --profile --colors",
-      "lint": "eslint --ext js --ext jsx src || exit 0",
-      "test": "babel-node ./node_modules/karma/bin/karma start karma.conf.babel.js"
+      "lint": "eslint --ext js --ext jsx src || exit 0"
    },
    "license": "MIT",
    "dependencies": {
