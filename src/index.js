@@ -1,15 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import Routes from './routes';
+import ToDoList from 'jsx/components/ToDoList';
+import ToDoModel from 'models/ToDoModel';
 
-window.onload = () => {
+const model = new ToDoModel();
+
+const render = () => {
     ReactDOM.render(
         <AppContainer>
-            <Routes />
+            <ToDoList model={model} />
         </AppContainer>,
         document.getElementById('app')
     );
+};
+
+window.onload = () => {
+    model.subscribe(render);
+    render();
 };
 
 // Hot Module Replacement API
