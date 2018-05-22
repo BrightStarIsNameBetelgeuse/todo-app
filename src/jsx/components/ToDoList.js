@@ -76,7 +76,6 @@ class ToDoList extends Component {
                                     todo={el}
                                     editing={this.state.editing === el.id}
                                     onEdit={() => this._onEdit(el)}
-                                    onSave={() => this._onSave(el)}
                                     submitTodo={title => this._submitTodo(el, title)}
                                     toggle={todo => this.toggle(todo)}
                                     removeTodo={this._removeTodo}
