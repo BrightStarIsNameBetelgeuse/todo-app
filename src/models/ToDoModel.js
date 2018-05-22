@@ -1,12 +1,25 @@
 import _ from 'lodash';
+import Store from '../utils/store';
+
 class ToDoModel {
-    constructor() {
-        this.todos = [];
+    constructor(key) {
+        this.key = key;
+        this.todos = Store.store(key);
         this.listeners = [];
         this.reverseSort = false;
     }
 
+    static get instance() {
+        const model = 'model';
+        if (!this[model]) {
+            this[model] = new ToDoModel('todo-app');
+        }
+    
+        return this[model];
+    }
+
     runListeners = () => {
+        Store.store(this.key, this.todos);
         this.listeners.forEach(cb => cb());
     }
 

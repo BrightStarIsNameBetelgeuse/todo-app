@@ -6,25 +6,15 @@ import './ToDoItem.scss';
 class ToDoItem extends Component {
     static propTypes = {
         editing: PropTypes.bool.isRequired,
-        onEdit: PropTypes.func,
-        removeTodo: PropTypes.func,
+        onEdit: PropTypes.func.isRequired,
+        removeTodo: PropTypes.func.isRequired,
         todo: PropTypes.object.isRequired,
-        onChange: PropTypes.func.isRequired,
-        submitTodo: PropTypes.func,
+        submitTodo: PropTypes.func.isRequired,
         toggle: PropTypes.func.isRequired,
-    }
-
-    static defaultProps = {
-        onChange: () => {},
-        toggle: () => {},
     }
 
     state = {
         editingText: '',
-    }
-
-    _handleOnChange = e => {
-        this.props.onChange(e.target.value);
     }
 
     _handleEdit = () => {
@@ -61,12 +51,12 @@ class ToDoItem extends Component {
     }
 
     render() {
-        const todo = this.props.todo;
+        const { todo, editing } = this.props;
         return (
-            <li className={classnames('todo-item list-group-item list-group-item-action d-flex', { checked: this.props.todo.completed, editing: this.props.editing })}>
+            <li className={classnames('todo-item list-group-item list-group-item-action d-flex', { checked: todo.completed, editing })}>
                 <input type="checkbox" id={todo.id} onChange={this._checkToDo} />
                 <label htmlFor={todo.id} />
-                <span className="todo-title" onDoubleClick={this._handleEdit}>{this.props.todo.title}</span>
+                <span className="todo-title" onDoubleClick={this._handleEdit}>{todo.title}</span>
                 <span onClick={this._deleteToDo} className="close" />
                 <input type="text" ref={el => this.editInput = el} value={this.state.editingText} onKeyPress={e => e.key === 'Enter' && this._onSave()} onChange={this._onChangeItem} onBlur={this._onSave} />
             </li>
