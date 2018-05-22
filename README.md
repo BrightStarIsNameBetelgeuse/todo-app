@@ -5,9 +5,9 @@ Allows creating, deleting and sorting tasks. Also saves in localstorage.
 
 # Install
 
-npm i
+npm install
 
 # Run in dev mode
 
-npm start
+npm start \
 deploying at localhost:8888
