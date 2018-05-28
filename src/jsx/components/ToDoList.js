@@ -26,10 +26,6 @@ class ToDoList extends Component {
         model.sortList();
     }
 
-    _addTodo = () => {
-        this._addTodo();
-    }
-
     _onKeyPress = e => {
         if (e.key === 'Enter') {
             this._addTodo();
