@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import todos from 'jsx/reducers';
 import { AppContainer } from 'react-hot-loader';
 import ToDoList from 'jsx/components/ToDoList';
 import ToDoModel from 'models/ToDoModel';
 import 'styles/index.scss';
 
+const store = createStore();
+
 const render = () => {
     ReactDOM.render(
         <AppContainer>
-            <ToDoList />
+            <Provider>
+                <ToDoList />
+            </Provider>
         </AppContainer>,
         document.getElementById('app')
     );

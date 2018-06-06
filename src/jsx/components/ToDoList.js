@@ -8,41 +8,41 @@ const model = ToDoModel.instance;
 class ToDoList extends Component {
     state = {}
 
-    _addTodo = () => {
+    addTodo = () => {
         if (this.input.value) {
             model.add({ title: this.input.value.trim() });
             this.input.value = '';
         }
     }
 
-    _submitTodo = (todo, title) => {
+    submitTodo = (todo, title) => {
         model.save(todo, title);
         this.setState({
             editing: null,
         });
     }
 
-    _sortList = () => {
+    sortList = () => {
         model.sortList();
     }
 
-    _onKeyPress = e => {
+    onKeyPress = e => {
         if (e.key === 'Enter') {
             this._addTodo();
         }
     }
 
-    _onEdit = todo => {
+    onEdit = todo => {
         this.setState({
             editing: todo.id,
         });
     }
 
-    _removeTodo = id => {
+    removeTodo = id => {
         model.remove(id);
     }
 
-    _toggle = todo => {
+    toggle = todo => {
         model.toggle(todo);
     }
     render() {
