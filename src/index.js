@@ -1,29 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import todos from 'jsx/reducers';
+import { PersistGate } from 'redux-persist/integration/react';
+import configuredStore from 'utils/configureStore';
 import { AppContainer } from 'react-hot-loader';
 import ToDoList from 'jsx/components/ToDoList';
-import ToDoModel from 'models/ToDoModel';
 import 'styles/index.scss';
 
-const store = createStore();
-
-const render = () => {
+window.onload = () => {
     ReactDOM.render(
         <AppContainer>
-            <Provider>
-                <ToDoList />
+            <Provider store={configuredStore().store}>
+                <PersistGate persistor={configuredStore().persistor}>
+                    <ToDoList />
+                </PersistGate>
             </Provider>
         </AppContainer>,
         document.getElementById('app')
     );
-};
-
-window.onload = () => {
-    ToDoModel.instance.subscribe(render);
-    render();
 };
 
 // Hot Module Replacement API

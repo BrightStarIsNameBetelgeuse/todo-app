@@ -17,31 +17,23 @@ class ToDoItem extends Component {
         editingText: '',
     }
 
-    _handleEdit = () => {
+    handleEdit = () => {
         this.props.onEdit();
         this.setState({
             editingText: this.props.todo.title,
         });
     }
 
-    _onChangeItem = e => {
+    onChangeItem = e => {
         this.setState({
             editingText: e.target.value,
         });
-    }
-
-    _checkToDo = () => {
-        this.props.toggle(this.props.todo);
     }
 
     onSave = () => {
         if (this.state.editingText) {
             this.props.submitTodo(this.state.editingText);
         }
-    }
-
-    deleteToDo = () => {
-        this.props.removeTodo(this.props.todo.id);
     }
 
     componentDidUpdate (prevProps) {
@@ -54,11 +46,11 @@ class ToDoItem extends Component {
         const { todo, editing } = this.props;
         return (
             <li className={cn('todo-item list-group-item list-group-item-action d-flex', { checked: todo.completed, editing })}>
-                <input type="checkbox" id={todo.id} onChange={this._checkToDo} />
+                <input type="checkbox" id={todo.id} onChange={() => this.props.toggle()} />
                 <label htmlFor={todo.id} />
-                <span className="todo-title" onDoubleClick={this._handleEdit}>{todo.title}</span>
-                <span onClick={this.deleteToDo} className="close" />
-                <input type="text" ref={el => this.editInput = el} value={this.state.editingText} onKeyPress={e => e.key === 'Enter' && this.onSave()} onChange={this._onChangeItem} onBlur={this.onSave} />
+                <span className="todo-title" onDoubleClick={this.handleEdit}>{todo.title}</span>
+                <span onClick={() => this.props.removeTodo()} className="close" />
+                <input type="text" ref={el => this.editInput = el} value={this.state.editingText} onKeyPress={e => e.key === 'Enter' && this.onSave()} onChange={this.onChangeItem} onBlur={this.onSave} />
             </li>
         );
     }
